@@ -11,3 +11,12 @@
   font-size: 18px;
   line-height: 1.21;
 }
+
+@media screen and (max-width: 620px) {
+  .footer__text {
+    padding-left: 19px;
+    padding-right: 19px;
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}

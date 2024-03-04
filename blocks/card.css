@@ -34,8 +34,8 @@
 
 .card__button {
   background: transparent url(../images/Like\ Button.svg) center no-repeat;
-  width: 18px;
-  height: 21px;
+  width: 21px;
+  height: 19px;
   background-size: contain;
   border: none;
   transition: 0.2s ease-in-out;

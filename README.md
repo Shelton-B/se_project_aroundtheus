@@ -23,6 +23,10 @@ This project is made so all the elements are displayed correctly on popular scre
 - Responsive Layout
 - Media Queries
 
+## Github
+
+- https://shelton-b.github.io/se_project_aroundtheus/
+
 ## Video
 
 - https://drive.google.com/file/d/1QIZD1vhh4JHGFqGZDADZqhBVzoL34sYa/view?usp=drive_link

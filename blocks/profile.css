@@ -88,12 +88,9 @@
   }
 
   .profile__information {
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
     justify-content: center;
     margin: 30px 19px 36px 19px;
-    flex-wrap: wrap;
   }
 
   .profile__name {

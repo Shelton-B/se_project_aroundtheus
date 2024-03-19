@@ -78,7 +78,7 @@ profileEditForm.addEventListener("submit", (evt) => {
   closePopUp();
 });
 
-for (i = 0; i <= initialCards.length; i++) {
+for (i = 0; i < initialCards.length; i++) {
   const data = initialCards[i];
   const cardElement = getCardElement(data);
   cardList.prepend(cardElement);

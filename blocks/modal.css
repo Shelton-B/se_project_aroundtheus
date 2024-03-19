@@ -19,8 +19,8 @@
   background-color: white;
   border-radius: 10px;
   max-width: 430px;
-  max-height: 330px;
-  padding: 36px;
+  min-height: 330px;
+  box-sizing: border-box;
 }
 
 .modal__close {
@@ -50,7 +50,11 @@
   font-weight: 900;
   line-height: 29px;
   margin: 0;
-  padding-bottom: 54px;
+  padding: 34px 36px 0 36px;
+}
+
+.modal__form {
+  padding: 54px 36px 38px 36px;
 }
 
 .modal__input {
@@ -84,7 +88,7 @@
   transition: 0.2s ease-in-out;
   cursor: pointer;
   padding: 0;
-  margin-top: 48px;
+  margin-top: 34px;
 }
 
 .modal__button:hover {
@@ -94,8 +98,7 @@
 @media screen and (max-width: 620px) {
   .modal__container {
     max-width: 282px;
-    max-height: 322px;
-    padding: 0;
+    min-height: 322px;
   }
 
   .modal__heading {

@@ -113,6 +113,7 @@
         <p class="footer__text">© 2022 Around The U.S.</p>
       </footer>
     </div>
+    <!--  -->
     <div class="modal" id="profile_edit-modal">
       <div class="modal__container">
         <button
@@ -140,13 +141,55 @@
         </form>
       </div>
     </div>
+    <!--  -->
+
+    <div class="modal" id="card-edit-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="card-modal-button-close"
+          type="button"
+        ></button>
+        <h2 class="modal__heading">New place</h2>
+        <form class="modal__form">
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            class="modal__input"
+            id="card-title-input"
+          />
+          <input
+            type="text"
+            name="url"
+            placeholder="Image URL"
+            class="modal__input"
+            id="card-url-input"
+          />
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="preview-modal">
+      <div class="modal__container modal__container_preview">
+        <img src="" alt="" class="modal__preview_image" />
+        <button
+          class="modal__close"
+          id="preview-modal-button-close"
+          type="button"
+        ></button>
+        <p class="modal__preview_text"></p>
+      </div>
+    </div>
 
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
+        <button class="card__delete-button" type="button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button class="card__button" type="button"></button>
+          <button class="card__like-button" type="button"></button>
         </div>
       </li>
     </template>

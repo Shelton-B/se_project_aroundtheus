@@ -1,0 +1,24 @@
+.preview__modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 19px 0 19px;
+}
+
+.preview__modal-content {
+  position: relative;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 75vw;
+  max-height: 75vh;
+  box-sizing: border-box;
+}
+
+.modal_opened {
+  display: flex;
+}

@@ -23,6 +23,12 @@
   box-sizing: border-box;
 }
 
+.modal__container_preview {
+  background-color: transparent;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
 .modal__close {
   background-image: url(../images/Close\ Icon.svg);
   background-color: transparent;
@@ -64,7 +70,7 @@
   font-weight: 400;
   line-height: 17px;
   box-sizing: border-box;
-  padding: 0 0 13px 0;
+  padding: 13px 0 13px 0;
   border: none;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 }
@@ -93,6 +99,20 @@
 
 .modal__button:hover {
   opacity: 80%;
+}
+
+.modal__preview_image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal__preview_text {
+  color: #fff;
+  font-family: Inter, arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
 }
 
 @media screen and (max-width: 620px) {

@@ -55,7 +55,7 @@ const addCardEditForm = addCardModal.querySelector(".modal__form");
 const addCardUrlInput = document.querySelector("#card-url-input");
 const addCardTitleInput = document.querySelector("#card-title-input");
 const previewImageModalCloseButton = document.querySelector(
-  "#preview-modal-button-close"
+  ".modal__close_preview"
 );
 
 ////////////* Functions  *////////////

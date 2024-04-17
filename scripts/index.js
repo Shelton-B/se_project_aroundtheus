@@ -61,6 +61,8 @@ const previewImageModalCloseButton = document.querySelector(
 );
 const previewImageModal = document.querySelector("#preview-modal");
 
+const overlayModal = document.querySelectorAll(".modal");
+
 ////////////* Functions  *////////////
 //////////////////////////////////////
 function closePopUp(modal) {
@@ -123,6 +125,23 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function escapePopUp(evt) {
+  if (evt.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    closePopUp(modalOpened);
+  }
+}
+
+function openPopUp(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", escapePopUp);
+}
+
+function closePopUp(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", escapePopUp);
+}
+
 ///////////* Event Listeners *////////////
 /////////////////////////////////////////
 profileEditButton.addEventListener("click", () => {
@@ -145,6 +164,33 @@ previewImageModalCloseButton.addEventListener("click", () =>
 
 profileEditForm.addEventListener("submit", handleProfileCardFormSubmit);
 addCardEditForm.addEventListener("submit", handleAddCardFormSubmit);
+
+profileEditModal.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("modal_opened") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopUp(profileEditModal);
+  }
+});
+
+addCardModal.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("modal_opened") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopUp(addCardModal);
+  }
+});
+
+previewImageModal.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("modal_opened") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopUp(previewImageModal);
+  }
+});
 
 // >>>> add event listener to cardImage
 // >>>> openPopUp with previewImageModal (new modal)

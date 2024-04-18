@@ -31,24 +31,42 @@ function checkInputValidity(formElement, options, inputElement) {
   hideInputError(formElement, options, inputElement);
 }
 
-function toggleButtonState(
+// function toggleButtonState(
+//   inputElements,
+//   submitButton,
+//   { inactiveButtonClass }
+// ) {
+//   let foundInvalid = false;
+//   inputElements.forEach((inputElement) => {
+//     if (!inputElement.validity.valid) {
+//       foundInvalid = true;
+//     }
+//   });
+//   if (foundInvalid) {
+//     submitButton.classList.add(inactiveButtonClass);
+//     return (submitButton.disabled = true);
+//   }
+//   submitButton.classList.remove(inactiveButtonClass);
+//   submitButton.disabled = false;
+// }
+
+const toggleButtonState = (
   inputElements,
-  submitButton,
+  submitButtonSelector,
   { inactiveButtonClass }
-) {
-  let foundInvalid = false;
-  inputElements.forEach((inputElement) => {
-    if (!inputElement.validity.valid) {
-      foundInvalid = true;
-    }
-  });
-  if (foundInvalid) {
-    submitButton.classList.add(inactiveButtonClass);
-    return (submitButton.disabled = true);
+) => {
+  const checkFormValidity = (inputs) =>
+    inputs.every((input) => input.validity.valid);
+  const isFormValid = checkFormValidity(inputElements);
+
+  if (!isFormValid) {
+    submitButtonSelector.classList.add(inactiveButtonClass);
+    submitButtonSelector.disabled = true;
+  } else {
+    submitButtonSelector.classList.remove(inactiveButtonClass);
+    submitButtonSelector.disabled = false;
   }
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
-}
+};
 
 function setEventListeners(formElement, options) {
   const inputSelector = options.inputSelector;
@@ -56,11 +74,11 @@ function setEventListeners(formElement, options) {
     formElement.querySelectorAll(options.inputSelector)
   );
 
-  const submitButton = formElement.querySelector(".modal__button");
+  const submitButtonSelector = formElement.querySelector(".modal__button");
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
       checkInputValidity(formElement, options, inputElement);
-      toggleButtonState(inputElements, submitButton, options);
+      toggleButtonState(inputElements, submitButtonSelector, options);
     });
   });
 }

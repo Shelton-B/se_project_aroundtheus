@@ -65,10 +65,6 @@ const overlayModal = document.querySelectorAll(".modal");
 
 ////////////* Functions  *////////////
 //////////////////////////////////////
-function closePopUp(modal) {
-  modal.classList.remove("modal_opened");
-}
-
 function handleProfileCardFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
@@ -87,10 +83,6 @@ function handleAddCardFormSubmit(evt) {
 function renderCard(data) {
   const cardElement = getCardElement(data);
   cardList.prepend(cardElement);
-}
-
-function openPopUp(modal) {
-  modal.classList.add("modal_opened");
 }
 
 function getCardElement(data) {
@@ -142,6 +134,15 @@ function closePopUp(modal) {
   document.removeEventListener("keydown", escapePopUp);
 }
 
+function closeModalOnRemoteClick(evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopUp(evt.target);
+  }
+}
+
 ///////////* Event Listeners *////////////
 /////////////////////////////////////////
 profileEditButton.addEventListener("click", () => {
@@ -165,32 +166,36 @@ previewImageModalCloseButton.addEventListener("click", () =>
 profileEditForm.addEventListener("submit", handleProfileCardFormSubmit);
 addCardEditForm.addEventListener("submit", handleAddCardFormSubmit);
 
-profileEditModal.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("modal_opened") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopUp(profileEditModal);
-  }
-});
+// profileEditModal.addEventListener("mousedown", (evt) => {
+//   if (
+//     evt.target.classList.contains("modal_opened") ||
+//     evt.target.classList.contains("modal__close")
+//   ) {
+//     closePopUp(profileEditModal);
+//   }
+// });
 
-addCardModal.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("modal_opened") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopUp(addCardModal);
-  }
-});
+// addCardModal.addEventListener("mousedown", (evt) => {
+//   if (
+//     evt.target.classList.contains("modal_opened") ||
+//     evt.target.classList.contains("modal__close")
+//   ) {
+//     closePopUp(addCardModal);
+//   }
+// });
 
-previewImageModal.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("modal_opened") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopUp(previewImageModal);
-  }
-});
+// previewImageModal.addEventListener("mousedown", (evt) => {
+//   if (
+//     evt.target.classList.contains("modal_opened") ||
+//     evt.target.classList.contains("modal__close")
+//   ) {
+//     closePopUp(previewImageModal);
+//   }
+// });
+
+profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
+addCardModal.addEventListener("mousedown", closeModalOnRemoteClick);
+previewImageModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
 // >>>> add event listener to cardImage
 // >>>> openPopUp with previewImageModal (new modal)

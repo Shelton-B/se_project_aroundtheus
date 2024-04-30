@@ -71,9 +71,7 @@ const toggleButtonState = (
 
 function setEventListeners(formElement, options) {
   const inputSelector = options.inputSelector;
-  const inputElements = Array.from(
-    formElement.querySelectorAll(options.inputSelector)
-  );
+  const inputElements = Array.from(formElement.querySelectorAll(inputSelector));
 
   const submitButton = formElement.querySelector(options.submitButtonSelector);
   inputElements.forEach((inputElement) => {
@@ -96,7 +94,7 @@ function enableValidation(options) {
   });
 }
 
-const config = {
+export const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",

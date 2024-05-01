@@ -1,7 +1,7 @@
 class Card {
   constructor(data, cardSelector, handleImageClick) {
-    this._name = data.name;
-    this._link = data.link;
+    this.name = data.name;
+    this.link = data.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
   }
@@ -12,10 +12,10 @@ class Card {
       .content.querySelector(".card")
       .cloneNode(true);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
-    this._cardImageElement.src = this._link;
-    this._cardImageElement.alt = this._name;
+    this._cardImageElement.src = this.link;
+    this._cardImageElement.alt = this.name;
     this._cardImageName = this._cardElement.querySelector(".card__title");
-    this._cardImageName.textContent = this._name;
+    this._cardImageName.textContent = this.name;
     this._setEventListeners();
     return this._cardElement;
   }
@@ -29,9 +29,9 @@ class Card {
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteButton());
 
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => this._handleImageClick(this));
+    this._cardImageElement.addEventListener("click", () =>
+      this._handleImageClick(this)
+    );
   }
 
   _handleLikeButton() {

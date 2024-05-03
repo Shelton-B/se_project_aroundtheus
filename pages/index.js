@@ -1,6 +1,5 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { config } from "../scripts/validation.js";
 
 const initialCards = [
   {
@@ -170,5 +169,17 @@ previewImageModal.addEventListener("mousedown", closeModalOnRemoteClick);
 initialCards.forEach((data) => renderCard(data, cardList));
 
 // validator; //
-const editFormValidator = new FormValidator(config, formElement);
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(config, addCardEditForm);
+const addFormValidator = new FormValidator(config, profileEditForm);
+
 editFormValidator.enableValidation();
+addFormValidator.enableValidation();

@@ -84,7 +84,6 @@ function handleAddCardFormSubmit(evt) {
   const name = addCardTitleInput.value;
   const link = addCardUrlInput.value;
   renderCard({ name, link }, cardList);
-  submitCardButton.disabled = true;
   evt.currentTarget.reset();
   closePopUp(addCardModal);
 }
@@ -132,14 +131,14 @@ profileEditButton.addEventListener("click", () => {
 
 addCardButton.addEventListener("click", () => {
   openPopUp(addCardModal);
-  editFormValidator.toggleButtonState();
+  addFormValidator.toggleButtonState();
 });
 
 profileEditForm.addEventListener("submit", handleProfileCardFormSubmit);
 addCardEditForm.addEventListener("submit", handleAddCardFormSubmit);
-profileEditModal.addEventListener("mousedown", handleCloseModalOnRemoteClick);
-addCardModal.addEventListener("mousedown", handleCloseModalOnRemoteClick);
-previewImageModal.addEventListener("mousedown", handleCloseModalOnRemoteClick);
+[profileEditModal, addCardModal, previewImageModal].forEach((modal) => {
+  modal.addEventListener("mousedown", handleCloseModalOnRemoteClick);
+});
 
 initialCards.forEach((data) => renderCard(data, cardList));
 
@@ -153,8 +152,8 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-const editFormValidator = new FormValidator(config, addCardEditForm);
-const addFormValidator = new FormValidator(config, profileEditForm);
+const editFormValidator = new FormValidator(config, profileEditForm);
+const addFormValidator = new FormValidator(config, addCardEditForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();

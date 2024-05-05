@@ -18,6 +18,7 @@
   visibility: visible;
   opacity: 1;
   pointer-events: all;
+  display: flex;
 }
 
 .modal__container {
@@ -150,6 +151,10 @@
     max-height: 75vh;
   }
 
+  .modal__container {
+    max-width: 282px;
+  }
+
   .modal__heading {
     font-size: 18px;
     line-height: 22px;
@@ -165,16 +170,10 @@
     line-height: 17px;
   }
 
-  .modal__close_preview {
+  .modal__close {
     width: 26px;
     height: 26px;
-    top: -30px;
-    right: -30px;
+    bottom: -91px;
+    left: 265px;
   }
-
-  /* .modal__container_preview {
-    background-color: transparent;
-    max-width: 75vw;
-    max-height: 75vh;
-  } */
 }

@@ -33,6 +33,7 @@ class Card {
       this._handleImageClick(this)
     );
   }
+  2;
 
   _handleLikeButton() {
     this._cardElement

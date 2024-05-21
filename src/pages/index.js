@@ -26,7 +26,6 @@ const handleImageClick = (data) => {
 
 function handleAddCardFormSubmit(inputValues) {
   renderCard(inputValues, cardList);
-  addCardForm.reset();
   addCardPopUp.close();
 }
 
@@ -77,10 +76,7 @@ const editProfilePopUp = new PopupWithForm(
   handleProfileCardFormSubmit
 );
 
-const imagePopUp = new PopupWithImage(
-  { popupSelector: "#preview-modal" },
-  () => {}
-);
+const imagePopUp = new PopupWithImage({ popupSelector: "#preview-modal" });
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",

@@ -4,9 +4,37 @@
   padding-top: 40px;
 }
 
-.profile__avatar {
+/* -------------------------------------------------------------------------------- */
+
+.profile__container {
+  position: relative;
   margin-right: 30px;
 }
+
+.profile__avatar {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+
+.profile__avatar-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url("../images/pencil.svg") center no-repeat rgba(0, 0, 0, 0.8);
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.profile__container:hover .profile__avatar-button {
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------------------------- */
 
 .profile__information {
   display: grid;
@@ -112,8 +140,21 @@
     width: 100%;
   }
 
+  .profile__information {
+    display: grid;
+    grid-template-areas:
+      "name button"
+      "description description";
+    grid-gap: 7px 18px;
+    align-items: center;
+  }
+
   .profile__add-button {
     margin: 0;
     width: 100%;
+  }
+
+  .profile__container {
+    position: relative;
   }
 }

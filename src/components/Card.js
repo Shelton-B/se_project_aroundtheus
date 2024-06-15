@@ -30,7 +30,7 @@ class Card {
     this._deleteButton = this._cardElement.querySelector(
       ".card__delete-button"
     );
-    this.handleLikeStatus();
+    this._handleLikeStatus();
     this._setEventListeners();
     return this._cardElement;
   }
@@ -50,16 +50,16 @@ class Card {
     );
   }
 
-  // handleLikeButton() {
-  //   this._likeButtonToggle();
-  // }
-
-  handleLikeStatus() {
+  _handleLikeStatus() {
     if (this.isLiked()) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
       this._likeButton.classList.remove("card__like-button_active");
     }
+  }
+
+  updateLikesView() {
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 
   isLiked() {

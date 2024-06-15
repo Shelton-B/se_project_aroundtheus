@@ -69,6 +69,7 @@ api.loadUserInfo().then((userData) => {
     name: userData.name,
     about: userData.about,
   });
+  userInfo.setAvatar({ avatar: userData.avatar });
 });
 
 /* functions */
@@ -92,14 +93,12 @@ function handleDelete(card) {
 }
 
 function handleLikeCard(card) {
-  console.log(card.isLiked());
-  if (!card._isLiked) {
+  if (!card.isLiked) {
     api
       .likeCard(card.id)
-      .then((res) => {
-        // console.log(res);
-        // card.isLiked = false;
-        card.handleLikeStatus();
+      .then(() => {
+        card.isLiked = true;
+        card.updateLikesView();
       })
       .catch((err) => {
         console.error(err);
@@ -107,9 +106,9 @@ function handleLikeCard(card) {
   } else {
     api
       .unlikeCard(card.id)
-      .then((res) => {
-        // card.isLiked = true;
-        card.handleLikeStatus();
+      .then(() => {
+        card.isLiked = false;
+        card.updateLikesView();
       })
       .catch((err) => {
         console.error(err);
@@ -122,16 +121,26 @@ function handleAddCardFormSubmit(inputValues) {
   addCardPopUp.close();
 }
 
-function handleProfileCardFormSubmit() {
-  // api.editUserInfo().then((data) => {
-  //   // handle successful response
-  // });
-  userInfo.setUserInfo({
-    name: profileNameInput.value,
-    about: profileDescriptionInput.value,
-  });
-  editProfilePopUp.close();
+function handleProfileEditFormSubmit(inputValues) {
+  editProfilePopUp.renderLoading(true);
+  api
+    .editUserInfo(inputValues)
+    .then((newUserData) => {
+      userInfo.setUserInfo(newUserData);
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editProfilePopUp.renderLoading(false);
+      editProfilePopUp.close();
+    });
 }
+
+// function handleProfileCardFormSubmit({ name, about }) {
+//   userInfo.setUserInfo({ name, about });
+//   editProfilePopUp.close();
+// }
 
 function createCard(data) {
   const cardElement = new Card(
@@ -152,12 +161,19 @@ function renderCard(data) {
 }
 
 function handleAvatarSubmit(inputValues) {
-  api.editAvatar({ avatar: inputValues.link }).then((newAvatar) => {
-    userInfo.setAvatar(newAvatar);
-    editAvatarPopup.close().catch((err) => {
+  editAvatarPopup.renderLoading(true);
+  api
+    .editAvatar({ avatar: inputValues.link })
+    .then((newAvatar) => {
+      userInfo.setAvatar(newAvatar);
+    })
+    .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      editAvatarPopup.renderLoading(false);
+      editAvatarPopup.close();
     });
-  });
 }
 
 /* event listeners */
@@ -197,7 +213,7 @@ const addCardPopUp = new PopupWithForm(
 
 const editProfilePopUp = new PopupWithForm(
   { popupSelector: "#profile_edit-modal" },
-  handleProfileCardFormSubmit
+  handleProfileEditFormSubmit
 );
 
 const editAvatarPopup = new PopupWithForm(

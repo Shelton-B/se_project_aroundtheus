@@ -1,27 +1,25 @@
-# Project 3: Around The U.S.
+# Project 3 - 9: Around The U.S.
 
 ### Overview
 
-- Intro
-- Figma
-- Images
+- This site allows users to manage their avatars, usernames, descriptions, and cards using BEM methodology, CSS, HTML, JavaScript, and API integration.
 
-**Intro**
+## Features
 
-This project is made so all the elements are displayed correctly on popular screen sizes.
+- Avatar Editing: Users can upload, edit, and manage their avatar images.
+- Profile Management: Users can update their usernames and descriptions.
+- Card Creation: Users can create new cards with customizable content.
+- Card Interaction: Users can like or unlike cards created by themselves or others.
+- Card Management: Users can delete cards they've created.
 
-## Images
+## Technologies Used
 
-- Project 3.png
-
-## Project features
-
-- Semantic HTML5
-- Grid
-- Flexbox
-- Flat BEM file structure
-- Responsive Layout
-- Media Queries
+- BEM Methodology: Follows the BEM (Block Element Modifier) methodology for better scalability and maintainability of CSS.
+- CSS: Styling the application for a user-friendly interface.
+- HTML: Structure and markup of the web pages.
+- JavaScript: Client-side functionality including user interactions and API integration.
+- API: Integrates with a backend API for data storage and retrieval.
+- OOP (Object-Oriented Programming): Utilizes principles of OOP for organizing and managing code structure.
 
 ## Github
 

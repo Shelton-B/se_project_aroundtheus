@@ -6,7 +6,7 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import { config } from "../utils/constants.js";
 import "../pages/index.css";
-import Api from "../components/API.js";
+import Api from "../components/Api.js";
 import PopupDelete from "../components/PopupDelete.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -117,8 +117,23 @@ function handleLikeCard(card) {
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  renderCard(inputValues, cardList);
-  addCardPopUp.close();
+  addCardPopUp.renderLoading(true);
+  api
+    .addCard({
+      name: inputValues.name,
+      link: inputValues.link,
+    })
+    .then((data) => {
+      const card = createCard(data);
+      cardSection.addItem(card);
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      addCardPopUp.renderLoading(false);
+      addCardPopUp.close();
+    });
 }
 
 function handleProfileEditFormSubmit(inputValues) {
@@ -137,11 +152,6 @@ function handleProfileEditFormSubmit(inputValues) {
     });
 }
 
-// function handleProfileCardFormSubmit({ name, about }) {
-//   userInfo.setUserInfo({ name, about });
-//   editProfilePopUp.close();
-// }
-
 function createCard(data) {
   const cardElement = new Card(
     data,
@@ -153,12 +163,12 @@ function createCard(data) {
   return cardElement.getCard();
 }
 
-function renderCard(data) {
-  api.addCard(data).then((data) => {
-    const card = createCard(data);
-    cardSection.addItem(card);
-  });
-}
+// function renderCard(data) {
+//   api.addCard(data).then((data) => {
+//     const card = createCard(data);
+//     cardSection.addItem(card);
+//   });
+// }
 
 function handleAvatarSubmit(inputValues) {
   editAvatarPopup.renderLoading(true);
@@ -182,10 +192,6 @@ addCardButton.addEventListener("click", () => {
   addCardPopUp.open();
   addFormValidator.toggleButtonState();
 });
-
-// api.editUserInfo().then((data) => {
-//   console.log(data);
-// });
 
 profileEditButton.addEventListener("click", () => {
   const userInfoData = userInfo.getUserInfo();
@@ -224,7 +230,6 @@ const editAvatarPopup = new PopupWithForm(
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
-// <!-- enable validation for avatarEditForm -->
 
 addCardPopUp.setEventListeners();
 editProfilePopUp.setEventListeners();

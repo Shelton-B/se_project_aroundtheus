@@ -80,25 +80,30 @@ const handleImageClick = (data) => {
 function handleDelete(card) {
   popupDelete.open();
   popupDelete.setSubmitAction(() => {
+    popupDelete.renderDelete(true);
+
     api
       .deleteInitialCards(card.id)
       .then(() => {
         card.handleDelete();
+
         popupDelete.close();
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        popupDelete.renderDelete(false);
       });
   });
 }
 
 function handleLikeCard(card) {
-  if (!card.isLiked) {
+  if (!card.isLiked()) {
     api
       .likeCard(card.id)
       .then(() => {
-        card.isLiked = true;
-        card.updateLikesView();
+        card.setIsLiked(true);
       })
       .catch((err) => {
         console.error(err);
@@ -107,8 +112,7 @@ function handleLikeCard(card) {
     api
       .unlikeCard(card.id)
       .then(() => {
-        card.isLiked = false;
-        card.updateLikesView();
+        card.setIsLiked(false);
       })
       .catch((err) => {
         console.error(err);
@@ -126,13 +130,13 @@ function handleAddCardFormSubmit(inputValues) {
     .then((data) => {
       const card = createCard(data);
       cardSection.addItem(card);
+      addCardPopUp.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
       addCardPopUp.renderLoading(false);
-      addCardPopUp.close();
     });
 }
 
@@ -142,13 +146,13 @@ function handleProfileEditFormSubmit(inputValues) {
     .editUserInfo(inputValues)
     .then((newUserData) => {
       userInfo.setUserInfo(newUserData);
+      editProfilePopUp.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
       editProfilePopUp.renderLoading(false);
-      editProfilePopUp.close();
     });
 }
 
@@ -176,13 +180,13 @@ function handleAvatarSubmit(inputValues) {
     .editAvatar({ avatar: inputValues.link })
     .then((newAvatar) => {
       userInfo.setAvatar(newAvatar);
+      editAvatarPopup.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
       editAvatarPopup.renderLoading(false);
-      editAvatarPopup.close();
     });
 }
 

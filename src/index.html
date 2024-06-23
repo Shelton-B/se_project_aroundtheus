@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel="stylesheet" href="../src/pages/index.css" /> -->
     <title>Around The Us</title>
   </head>
   <body class="page">
@@ -17,103 +16,33 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/Avatar.svg')%>"
-            alt="Profile Avatar"
-            class="profile__avatar"
-          />
+          <div class="profile__container">
+            <img
+              src="<%=require('./images/Avatar.svg')%>"
+              alt="Profile Avatar"
+              class="profile__avatar"
+            />
+            <button class="profile__avatar-button" type="button"></button>
+          </div>
           <div class="profile__information">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-            <!-- <li class="card">
-              <img
-                src="./images/yosemite.jpg"
-                alt="Yosemite"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="card">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="Lake Louise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button class="card__button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="card">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="Bald Mountains"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button class="card__button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="card">
-              <img
-                src="./images/latemar.jpg"
-                alt="Latemar"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button class="card__button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="card">
-              <img
-                src="./images/vanoise.jpg"
-                alt="Vanoise National Park"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button class="card__button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="card">
-              <img
-                src="./images/lago.jpg"
-                alt="Lago di Braies"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button class="card__button" type="button"></button>
-              </div>
-            </li> -->
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="footer page__section">
         <p class="footer__text">© 2024 Around The U.S.</p>
       </footer>
     </div>
-    <!--  -->
     <div class="modal" id="profile_edit-modal">
       <div class="modal__container">
         <button
@@ -139,7 +68,7 @@
           <label class="modal__label">
             <input
               type="text"
-              name="description"
+              name="about"
               placeholder="Description"
               class="modal__input"
               id="profile-description-input"
@@ -190,13 +119,56 @@
             />
             <span class="modal__error" id="card-url-input-error"></span>
           </label>
-          <button class="modal__button" type="submit">Create</button>
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- delete modal -->
+
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container" id="modal__confirm">
+        <button
+          class="modal__close"
+          id="card-modal-button-close"
+          type="button"
+        ></button>
+        <h2 class="modal__heading confirm__heading">Are you sure?</h2>
+        <button class="modal__button" id="modal-button-confirm" type="submit">
+          Yes
+        </button>
+      </div>
+    </div>
+
+    <!-- avatar modal -->
+
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="avatar-modal-button-close"
+          type="button"
+        ></button>
+        <h2 class="modal__heading">Change Profile Picture</h2>
+        <form class="modal__form">
+          <label class="modal__label">
+            <input
+              type="url"
+              name="link"
+              placeholder="https://somewebsite.com/someimage.jpg"
+              class="modal__input"
+              id="avatar-url-input"
+              required
+            />
+            <span class="modal__error" id="avatar-url-input-error"></span>
+          </label>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
 
     <div class="modal" id="preview-modal">
-      <div class="modal__container modal__container_preview">
+      <div class="modal__container_preview">
         <img src="" alt="" class="modal__preview_image" />
         <button
           class="modal__close modal__close_preview"

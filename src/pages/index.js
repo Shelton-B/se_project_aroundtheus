@@ -44,33 +44,43 @@ const userInfo = new UserInfo({
 
 let cardSection;
 
-api.getInitialCards().then((initialCards) => {
-  cardSection = new Section(
-    {
-      items: initialCards,
-      renderer: (data) => {
-        const cardElement = new Card(
-          data,
-          "#card-template",
-          handleImageClick,
-          handleDelete,
-          handleLikeCard
-        );
-        cardSection.addItem(cardElement.getCard());
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: (data) => {
+          const cardElement = new Card(
+            data,
+            "#card-template",
+            handleImageClick,
+            handleDelete,
+            handleLikeCard
+          );
+          cardSection.addItem(cardElement.getCard());
+        },
       },
-    },
-    ".cards__list"
-  );
-  cardSection.renderItems();
-});
-
-api.loadUserInfo().then((userData) => {
-  userInfo.setUserInfo({
-    name: userData.name,
-    about: userData.about,
+      ".cards__list"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
   });
-  userInfo.setAvatar({ avatar: userData.avatar });
-});
+
+api
+  .loadUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+    });
+    userInfo.setAvatar({ avatar: userData.avatar });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 /* functions */
 const handleImageClick = (data) => {
